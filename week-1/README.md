@@ -1,59 +1,49 @@
-# Nädal 1 – SQL Basics: UrbanStyle Data Landscape
+# Nädal 1 – SQL Basics
 
 ## Projekti eesmärk
 
-Selle nädala eesmärk oli tutvuda SQL-i põhikäskudega ning õppida uurima UrbanStyle ettevõtte andmeid. Fookuses oli müügiandmete kvaliteedi hindamine ja esmaste tähelepanekute tegemine enne põhjalikuma ärianalüüsi alustamist.
+Selle nädala eesmärk oli õppida SQL-i põhikäskusid ning uurida UrbanStyle müügiandmeid. Minu ülesanne oli hinnata müügiandmete kvaliteeti ja leida võimalikud probleemid enne edasist analüüsi.
 
-## Äriküsimus
+## Minu ülesanne
 
-Kas UrbanStyle müügiandmed on piisavalt kvaliteetsed, et nende põhjal teha usaldusväärseid äriotsuseid?
+Minu roll oli **Roll A – Sales**.
 
-## Minu roll
+Kasutasin SQL päringuid, et:
 
-Minu roll meeskonnas oli **Roll A – Sales**.
-
-Kasutasin SQL päringuid, et analüüsida `sales` tabelit ning hinnata müügiandmete kvaliteeti.
-
-## Mida ma tegin
-
-- uurisin `sales` tabelit SQL päringutega;
-- kontrollisin müügikirjete koguarvu;
-- leidsin suurimad ja väikseimad müügitehingud;
-- kontrollisin puuduvaid `customer_id` väärtusi;
-- analüüsisin müügiandmete kvaliteeti;
-- osalesin meeskonna ühise Data Landscape kokkuvõtte koostamisel ja esitlusmaterjalide ettevalmistamisel.
+- uurida `sales` tabelit;
+- kontrollida müügikirjete koguarvu;
+- leida suurimad ja väikseimad müügitehingud;
+- kontrollida puuduvaid `customer_id` väärtusi;
+- hinnata müügiandmete kvaliteeti.
 
 ## Tulemused
 
-Analüüsi käigus selgus, et:
+Minu analüüsi tulemusena selgus, et:
 
-- müügitabelis oli **15 234** müügikirjet;
+- `sales` tabelis oli **15 234** müügikirjet;
 - suurim müügitehing oli **2170,40 €**;
 - väikseim müügitehing oli **−1405,32 €**;
 - **1487** müügikirjel puudus `customer_id`;
-- andmestikus leidus negatiivseid müügisummasid, mis vajavad täiendavat kontrolli.
+- andmestikus esines negatiivseid müügisummasid, mis vajavad täiendavat kontrolli.
 
-## Mida tulemused näitavad
+## Minu soovitused
 
-Andmestik sobib edasiseks analüüsiks, kuid enne äriliste otsuste tegemist tuleb parandada andmete kvaliteeti. Puuduvad kliendiandmed ja negatiivsed müügisummad võivad mõjutada aruannete täpsust ning seeläbi ka juhtimisotsuseid.
+Analüüsi põhjal soovitan enne põhjalikumat ärianalüüsi:
 
-## Soovitused Toomasele
-
-Pärast UrbanStyle andmestiku analüüsi soovitame:
-
-1. Kontrollida puuduvaid `customer_id` väärtusi ning selgitada nende põhjus.
-2. Uurida negatiivseid müügisummasid ja teha kindlaks, kas tegemist on tagastuste või andmevigadega.
-3. Kontrollida võimalikke duplikaate kliendiandmetes.
-4. Täiendada andmestiku dokumentatsiooni, et tabelite ja veergude tähendus oleks üheselt mõistetav.
-5. Standardiseerida andmete sisestamise põhimõtted, et parandada andmekvaliteeti ja suurendada aruandluse usaldusväärsust.
+1. kontrollida puuduvaid `customer_id` väärtusi;
+2. uurida negatiivseid müügisummasid ja selgitada nende põhjus;
+3. kontrollida võimalikke duplikaate;
+4. täiendada andmestiku dokumentatsiooni;
+5. rakendada andmete kvaliteedi kontroll enne regulaarset aruandlust.
 
 ## Mida õppisin
 
-Õppisin kasutama SQL-i põhikäskusid (`SELECT`, `WHERE`, `ORDER BY`, `COUNT`, `MIN`, `MAX`) ning sain praktilise kogemuse andmete kvaliteedi hindamisel. Samuti mõistsin, et enne analüüsi või aruannete koostamist tuleb alati kontrollida andmete korrektsust.
+Õppisin kasutama SQL-i põhikäskusid (`SELECT`, `WHERE`, `ORDER BY`, `COUNT`, `MIN`, `MAX`) ning sain praktilise kogemuse müügiandmete uurimisel. Mõistsin, et enne analüüsi tegemist tuleb alati kontrollida andmete kvaliteeti, sest see mõjutab otseselt analüüsi usaldusväärsust.
 
 ## Kasutatud tööriistad
 
-- PostgreSQL (Supabase)
+- Supabase (PostgreSQL)
 - SQL
 - GitHub
 - NotebookLM
+- Chat GPT
