@@ -2,12 +2,15 @@
 
 Tere!
 
-See on minu DACA andmeanalüütika õpiteekonna portfoolio.
+See on minu DACA andmeanalüütika õpiteekonna portfoolio. Siia kogun iga nädala individuaalsed tööd, SQL lahendused ja õpimärkmed.
 
-## Sisu
+## Nädalad
 
-- week-1 – SQL Basics
-- week-2 – SQL Data Cleaning
+- Week 1 – SQL Basics
+- Week 2 – SQL Data Cleaning
+- Week 3 – SQL JOINs
+- Week 4 – (lisandub)
+- Week 5 – (lisandub)
 
 ## Kasutatud tööriistad
 
@@ -15,4 +18,8 @@ See on minu DACA andmeanalüütika õpiteekonna portfoolio.
 - SQL
 - GitHub
 - NotebookLM
-- Power BI (edasistes nädalates)
+- Power BI (hilisemates nädalates)
+
+## Eesmärk
+
+Portfoolio eesmärk on dokumenteerida minu arengut andmeanalüütikuna ning koondada kõik DACA programmi käigus valminud individuaalsed tööd ühte GitHubi repositooriumisse.
