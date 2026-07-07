@@ -1,0 +1,26 @@
+# Week 3 – SQL JOIN Analysis
+
+## Eesmärk
+
+Analüüsida UrbanStyle müügi-, kliendi- ja tooteandmeid kasutades SQL JOIN päringuid ning koostada ärilisi järeldusi.
+
+## Tehtud tegevused
+
+- Kasutasin INNER JOIN, LEFT JOIN ja kolme tabeli JOIN päringuid.
+- Leidsin aktiivseimad kliendid ja enim müüdud tooted.
+- Analüüsisin müüki linnade ja kategooriate lõikes.
+- Koostasin käibe- ja müügianalüüsi.
+- Tuvastasin kliendid ilma ostudeta ning müümata tooted.
+- Vastasin teadmiste kontrolli küsimustele.
+
+## Peamised tulemused
+
+- Analüüsiti **15 234 müügikirjet**.
+- Suurima käibega kategooria oli **jalanõud**.
+- Suurim müük tuli **Tallinnast**.
+- Leiti ostudeta kliendid ja müümata tooted.
+- SQL JOIN päringud võimaldasid ühendada kliendi-, toote- ja müügiandmed terviklikuks analüüsiks.
+
+## Kokkuvõte
+
+Töö käigus omandasin praktilise kogemuse SQL JOIN päringute kasutamisel ning õppisin ühendama mitut tabelit, et koostada ettevõtte jaoks sisukaid äriraporteid ja teha andmetel põhinevaid järeldusi.
