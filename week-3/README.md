@@ -1,35 +1,52 @@
-# Week 3 – SQL JOINs
+# Nädal 3 – SQL JOINs
 
-## Eesmärk
+## Projekti eesmärk
 
-Selle nädala eesmärk oli õppida kasutama SQL JOIN lauseid erinevate andmetabelite ühendamiseks ning lahendada UrbanStyle andmebaasi põhjal SQL päringuid.
+Selle nädala eesmärk oli õppida kasutama SQL JOIN lauseid erinevate andmetabelite ühendamiseks ning analüüsida UrbanStyle andmebaasi andmeid mitme tabeli põhjal.
 
-## Individuaalne töö
+## Äriküsimus
 
-Individuaalse töö käigus:
+Kuidas ühendada erinevates tabelites olevad andmed, et saada terviklik ülevaade klientidest, toodetest, müügist ja laoseisust ning toetada äriliste otsuste tegemist?
 
-- õppisin kasutama INNER JOIN ja LEFT JOIN lauseid;
-- ühendasin omavahel `sales`, `customers`, `products` ja `inventory` tabelid;
-- kirjutasin SQL päringuid erinevate äriküsimuste lahendamiseks;
+## Minu ülesanne
+
+Kasutasin SQL JOIN päringuid UrbanStyle andmebaasi tabelite ühendamiseks ning erinevate äriküsimuste lahendamiseks.
+
+Teostasin järgmised tegevused:
+
+- ühendasin tabelid `sales`, `customers`, `products` ja `inventory`;
+- kasutasin `INNER JOIN` ja `LEFT JOIN` lauseid;
+- kasutasin tabelite aliaseid (`s`, `c`, `p`, `i`);
+- koostasin SQL päringuid klientide, toodete, müügi ja laoseisu analüüsimiseks;
+- kasutasin funktsioone `GROUP BY`, `COUNT()`, `SUM()` ja `ORDER BY`;
 - kontrollisin päringute tulemusi Supabase SQL Editoris.
 
-## Õpitud oskused
+## Tulemused
 
-Selle töö käigus õppisin:
+Analüüsi käigus selgus, et:
 
-- kasutama tabelite aliaseid (`s`, `c`, `p`, `i`);
-- ühendama tabeleid PRIMARY KEY ja FOREIGN KEY alusel;
-- kasutama `INNER JOIN` ja `LEFT JOIN` lauseid;
-- kasutama `GROUP BY`, `COUNT()`, `SUM()` ja `ORDER BY` funktsioone;
-- koostama loetavaid ja korrektseid SQL päringuid.
+- erinevate tabelite ühendamine võimaldas koostada terviklikumaid müügi- ja kliendianalüüse;
+- `INNER JOIN` tagastas ainult omavahel seotud kirjed;
+- `LEFT JOIN` võimaldas leida ka kirjed, millel puudus vastav seos teises tabelis;
+- tabelite aliased muutsid SQL päringud loetavamaks ja lihtsamini hallatavaks.
+
+## Minu soovitused
+
+Analüüsi põhjal soovitan:
+
+- kasutada tabelite ühendamisel alati õigeid `PRIMARY KEY` ja `FOREIGN KEY` seoseid;
+- valida `INNER JOIN` või `LEFT JOIN` vastavalt analüüsi eesmärgile;
+- kasutada tabelite aliaseid SQL päringute loetavuse parandamiseks;
+- kontrollida JOIN päringute tulemusi enne aruannete koostamist.
+
+## Mida õppisin
+
+Õppisin kasutama SQL JOIN lauseid erinevate tabelite ühendamiseks ning sain parema arusaama sellest, kuidas on UrbanStyle andmebaasi kliendid, müügid, tooted ja laoseis omavahel seotud. Sain praktilise kogemuse mitme tabeli andmete ühendamisel ja nende põhjal äriküsimustele vastuste leidmisel.
 
 ## Kasutatud tööriistad
 
 - PostgreSQL (Supabase)
-- SQL Editor
+- SQL
 - GitHub
 - NotebookLM
-
-## Refleksioon
-
-JOIN-laused olid minu jaoks uus teema. Individuaalse töö käigus sain paremini aru, kuidas erinevates tabelites olevad andmed omavahel seotud on ning kuidas neid SQL päringutega ühendada, et saada ärilistele küsimustele vastuseid.
+- ChatGPT
