@@ -82,7 +82,7 @@ Dashboard'i kujundamisel lähtusin selgusest, loetavusest ja ühtsest visuaalses
 - Müügikohtade eristamiseks kasutasin navy-tooni `#1A1A2E` ja toetavaid värve.
 - Paigutasin juhtide kokkuvõtte dashboard'i ülaossa.
 - Paigutasin kogu müügitulu KPI-kaardi hästi nähtavale kohale.
-- Hoidsin graafikute pealkirjad ja väljade nimetused eestikeelsed.
+- Hoidsin graafikute pealkirjad, telgede nimetused ja kohtspikrid eestikeelsed.
 - Vältisin staatilisi selgitusi, mis võiksid aasta filtri kasutamisel muutuda ebatäpseks.
 - Säilitasin Power BI ristuva esiletõstmise, et kasutaja näeks valitud müügikoha mõju teistele visuaalidele.
 - Kohandasin dashboard'i ka mobiilivaate jaoks.
@@ -137,14 +137,15 @@ Avaldatud versioonis kontrollisin:
 - mobiilivaadet;
 - dashboard'i üldist loetavust.
 
-## Portfooliofailid
+## Dashboard'i ekraanipilt
 
-Nädala töö juurde kuuluvad:
+![UrbanStyle Power BI dashboard](urbanstyle_dashboard_screenshot.png)
 
-- Power BI `.pbix` fail;
-- dashboard'i PDF-eksport;
-- dashboard'i ekraanipilt;
-- README dokumentatsioon.
+## Failid
+
+- [Power BI dashboard](urbanstyle_week6_liis.pbix)
+- [Dashboard'i ekraanipilt](urbanstyle_dashboard_screenshot.png)
+- `README.md`
 
 ## Kokkuvõte
 
