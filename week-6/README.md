@@ -33,7 +33,6 @@ Kasutasin Nädal 5 jooksul loodud Power BI dashboard'i ning täiendasin seda jä
 - kasutasin UrbanStyle'i põhivärvina teal-tooni `#009B8D`;
 - kasutasin müügikohtade eristamiseks navy-tooni `#1A1A2E` ja toetavaid värve;
 - muutsin diagrammide väljade ja kohtspikrite nimetused eestikeelseks;
-- lisasin müügitrendi diagrammile horisontaalse viitejoone;
 - lisasin dashboard'i ülaossa juhtide kokkuvõtte;
 - kontrollisin visuaalide omavahelisi interaktsioone;
 - seadistasin KPI-kaardi näitama kogu perioodi müügitulu;
@@ -83,7 +82,7 @@ Dashboard'i kujundamisel lähtusin selgusest, loetavusest ja ühtsest visuaalses
 - Müügikohtade eristamiseks kasutasin navy-tooni `#1A1A2E` ja toetavaid värve.
 - Paigutasin juhtide kokkuvõtte dashboard'i ülaossa.
 - Paigutasin kogu müügitulu KPI-kaardi hästi nähtavale kohale.
-- Hoidsin graafikute pealkirjad ja telgede nimetused eestikeelsed.
+- Hoidsin graafikute pealkirjad ja väljade nimetused eestikeelsed.
 - Vältisin staatilisi selgitusi, mis võiksid aasta filtri kasutamisel muutuda ebatäpseks.
 - Säilitasin Power BI ristuva esiletõstmise, et kasutaja näeks valitud müügikoha mõju teistele visuaalidele.
 - Kohandasin dashboard'i ka mobiilivaate jaoks.
@@ -138,20 +137,14 @@ Avaldatud versioonis kontrollisin:
 - mobiilivaadet;
 - dashboard'i üldist loetavust.
 
-## Dashboard'i ekraanipilt
+## Portfooliofailid
 
-![UrbanStyle Power BI dashboard](images/urbanstyle_dashboard_screenshot.png)
+Nädala töö juurde kuuluvad:
 
-## Live-demo
-
-[Power BI dashboard'i avamine](LISA-SIIA-POWER-BI-LINK)
-
-## Failid
-
-- Power BI `.pbix` fail
-- dashboard'i PDF-eksport
-- dashboard'i ekraanipilt
-- README dokumentatsioon
+- Power BI `.pbix` fail;
+- dashboard'i PDF-eksport;
+- dashboard'i ekraanipilt;
+- README dokumentatsioon.
 
 ## Kokkuvõte
 
