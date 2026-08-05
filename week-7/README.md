@@ -1,23 +1,26 @@
 # Week 7 – Python ja Pandas
 
+## UrbanStyle’i klientide RFM-analüüs
+
 ## Projekti eesmärk
 
-Selle nädala eesmärk oli õppida kasutama Pythonit ja pandas teeki andmete laadimiseks, uurimiseks, puhastamiseks, ühendamiseks, analüüsimiseks ja visualiseerimiseks.
+Selle nädala eesmärk oli kasutada Pythonit ja pandas teeki UrbanStyle’i kliendi- ja müügiandmete analüüsimiseks.
 
-Minu individuaalse töö põhifookus oli UrbanStyle’i klientide RFM-analüüs. Analüüsi abil jagasin kliendid nende ostukäitumise põhjal segmentidesse, et selgitada välja:
+Minu individuaalse töö põhifookus oli RFM-kliendisegmenteerimine, mille abil selgitasin välja:
 
 - kes on ettevõtte kõige väärtuslikumad kliendid;
+- millised kliendid on lojaalsed;
 - millistel klientidel on potentsiaal muutuda lojaalsemaks;
-- millised kliendid on kadumisohus;
-- millise kliendisegmendiga peaks ettevõte esmajärjekorras tegelema.
+- millised kliendid on ostmise lõpetamise ohus;
+- millistele segmentidele tuleks suunata erinevaid turundustegevusi.
 
 ## Äriküsimus
 
-**Kes on UrbanStyle’i kõige väärtuslikumad kliendid, millised kliendid vajavad kiiret tähelepanu ja millise segmendiga peaks Marko esimesena tegelema?**
+**Kes on UrbanStyle’i VIP-kliendid, kui palju nad kulutavad ning millised kliendid vajavad ostuaktiivsuse languse tõttu tähelepanu?**
 
 ## Kasutatud tööriistad
 
-- Python 3.13
+- Python
 - pandas
 - Plotly Express
 - Jupyter Notebook
@@ -26,63 +29,62 @@ Minu individuaalse töö põhifookus oli UrbanStyle’i klientide RFM-analüüs.
 
 ## Kasutatud andmed
 
-Laadisin andmed Pythonisse otse Supabase’i andmebaasist.
+Andmed laadisin Pythonisse UrbanStyle’i Supabase’i andmebaasist.
 
 Kasutasin järgmisi tabeleid:
 
 | Tabel | Ridade arv | Veergude arv |
 |---|---:|---:|
 | `sales` | 15 234 | 12 |
-| `customers` | 3 150 | 9 |
+| `customers` | 3150 | 9 |
 | `products` | 362 | 9 |
 
-Ühendasin tabelid pandas `merge()` funktsiooniga:
+Tabelid ühendasin pandas `merge()` funktsiooniga:
 
-- `sales` ja `customers` tabelid veeru `customer_id` kaudu;
-- müügi- ja tooteandmed veeru `product_id` kaudu.
+- `sales` ja `customers` ühendati veeru `customer_id` kaudu;
+- müügi- ja tooteandmed ühendati veeru `product_id` kaudu.
 
-Mõlema ühendamise puhul kasutasin vasakühendust ehk `how="left"`, et säilitada kõik müügikirjed.
+Ühendamisel kasutasin vasakühendust ehk `how="left"`, et kõik müügikirjed säiliksid.
 
-Ühendatud DataFrame sisaldas:
+Ühendatud DataFrame sisaldas algselt:
 
 - **15 234 rida**
 - **28 veergu**
 
-Ühendamise järel jäi ridade arv samaks nagu algses `sales` tabelis. See näitas, et ühendamine ei tekitanud lisaridu ega eemaldanud müügikirjeid.
-
 ## Tehtud töö
 
-Analüüs koosnes järgmistest etappidest:
+Analüüsi käigus:
 
-1. paigaldasin Pythoni ja vajalikud teegid;
-2. seadistasin Jupyter Notebooki töökeskkonna;
-3. lõin ühenduse Supabase’i andmebaasiga;
-4. laadisin `sales`, `customers` ja `products` tabelid pandas DataFrame’idesse;
-5. kontrollisin tabelite mõõtmeid, veerge ja andmetüüpe;
-6. ühendasin müügi-, kliendi- ja tooteandmed;
-7. kontrollisin puuduvaid väärtusi ja duplikaate;
-8. valmistasin ette RFM-analüüsiks vajalikud andmed;
-9. arvutasin Recency, Frequency ja Monetary näitajad;
-10. määrasin klientidele RFM-skoorid;
-11. jagasin kliendid viide segmenti;
-12. koostasin segmentide kokkuvõttetabeli;
-13. lõin Plotly abil interaktiivsed visualiseeringud;
-14. sõnastasin analüüsi põhjal ärilised järeldused ja soovitused.
+1. lõin ühenduse Supabase’i andmebaasiga;
+2. laadisin tabelid pandas DataFrame’idesse;
+3. kontrollisin tabelite mõõtmeid ja andmetüüpe;
+4. ühendasin müügi-, kliendi- ja tooteandmed;
+5. kontrollisin puuduvaid väärtusi;
+6. kontrollisin täielikke duplikaate;
+7. kontrollisin duplikaate `invoice_id` järgi;
+8. eemaldasin korduvad arved;
+9. valmistasin andmed ette RFM-analüüsiks;
+10. arvutasin Recency, Frequency ja Monetary näitajad;
+11. määrasin klientidele RFM-skoorid;
+12. jagasin kliendid segmentidesse;
+13. koostasin segmentide kokkuvõtte;
+14. visualiseerisin tulemused Plotly abil;
+15. sõnastasin ärilised järeldused ja soovitused.
 
-## Andmete esmane kontroll
+## Andmete kvaliteedi kontroll
 
-Enne RFM-analüüsi kontrollisin:
+Enne analüüsi kontrollisin:
 
 - DataFrame’i mõõtmeid;
 - veergude nimesid;
 - andmetüüpe;
 - puuduvaid väärtusi;
 - täielikult dubleerivaid ridu;
-- numbriliste veergude miinimum-, maksimum- ja keskmisi väärtusi.
+- korduvaid `invoice_id` väärtusi;
+- `total_price` väärtuste vahemikku.
 
-Kontrolli tulemusena selgus:
+Esialgse kontrolli tulemused:
 
-- täielikult dubleerivaid ridu oli **0**;
 - `customer_id` puudus **1487 müügireal**;
 - `store_location` puudus **5204 real**;
 - `loyalty_tier` puudus **7033 real**;
@@ -90,9 +92,41 @@ Kontrolli tulemusena selgus:
 - väikseim `total_price` väärtus oli **−1405,32 €**;
 - suurim `total_price` väärtus oli **2170,40 €**.
 
-Kliendiandmete puudumine oli seotud eelkõige müügiridadega, kus puudus `customer_id`. Seetõttu puudusid samadel ridadel ka kliendi nimi, linn, sünniaasta ja muud klienditabelist pärinevad väärtused.
+Täielikult identsete ridade kontroll:
 
-## RFM-andmete puhastamine
+```python
+df.duplicated().sum()
+```
+
+näitas **0 duplikaati**.
+
+See kontroll ei olnud siiski piisav, sest sama arvega kirjed ei pruukinud olla kõikides veergudes täielikult identsed.
+
+Seetõttu kontrollisin duplikaate ärilise võtme ehk `invoice_id` järgi:
+
+```python
+df.duplicated(subset="invoice_id").sum()
+```
+
+Tulemus:
+
+- **5116 korduvat `invoice_id` kirjet**
+
+Duplikaadid eemaldasin järgmise koodiga:
+
+```python
+df = df.drop_duplicates(
+    subset="invoice_id",
+    keep="first"
+)
+```
+
+Pärast dedupeerimist jäi DataFrame’i:
+
+- **10 118 rida**
+- **28 veergu**
+
+## RFM-andmete ettevalmistamine
 
 RFM-analüüsi jaoks kasutasin järgmisi veerge:
 
@@ -104,31 +138,30 @@ Puhastamise käigus:
 
 - teisendasin `sale_date` veeru kuupäevatüübiks;
 - eemaldasin read, kus puudus `customer_id`;
-- eemaldasin read, kus puudus või ei olnud korrektne `sale_date`;
+- eemaldasin read, kus puudus või oli vigane `sale_date`;
 - eemaldasin read, kus puudus `total_price`;
-- jätsin analüüsi ainult positiivse väärtusega tehingud;
-- teisendasin `customer_id` täisarvuks.
+- jätsin alles ainult positiivse väärtusega tehingud;
+- teisendasin `customer_id` väärtused täisarvuks.
 
 Pärast puhastamist jäi RFM-analüüsi:
 
-- **13 468 tehingut**
+- **8950 müügikirjet**
+- **3 vajalikku veergu**
 - **0 puuduvat väärtust**
-- väikseim positiivne tehing **15,09 €**
-- suurim tehing **2170,40 €**
 
-Negatiivsed ja nullväärtusega tehingud jätsin RFM-analüüsist välja, et tagastused või vigased tehingud ei vähendaks kliendi positiivset ostumahtu.
+Negatiivsed ja nullväärtusega tehingud jätsin RFM-analüüsist välja, et tagastused või paranduskanded ei vähendaks kliendi positiivset ostumahtu.
 
 ## RFM-meetod
 
-RFM-analüüs hindab klienti kolme näitaja kaudu:
+RFM-analüüs hindab klienti kolme näitaja põhjal:
 
 - **Recency** – mitu päeva on möödunud kliendi viimasest ostust;
-- **Frequency** – mitu ostu klient tegi;
-- **Monetary** – kui palju klient kokku kulutas.
+- **Frequency** – mitu ostu klient on teinud;
+- **Monetary** – kui palju klient on kokku kulutanud.
 
 Analüüsi viitekuupäevaks määrasin andmestikus oleva viimase ostukuupäeva järgmise päeva.
 
-Analüüsi kuupäev oli **29.06.2026**.
+**Analüüsi kuupäev: 29.06.2026**
 
 Iga kliendi kohta arvutasin:
 
@@ -138,157 +171,183 @@ Frequency = kliendi ostude arv
 Monetary = kliendi tehingute kogusumma
 ```
 
-RFM-analüüsi jõudis kokku **2550 klienti**.
+RFM-tabelisse jõudis kokku:
+
+- **2540 klienti**
 
 ## RFM-skooride arvutamine
 
-Jagasin kliendid iga RFM-näitaja järgi viide gruppi ning määrasin skoorid vahemikus 1–5.
+Iga RFM-näitaja jagasin kvintiilide alusel viide gruppi.
 
-### Recency
+Klientidele määrati skoorid vahemikus 1–5.
 
-- skoor 5 – klient ostis suhteliselt hiljuti;
-- skoor 1 – kliendi viimasest ostust on möödunud palju aega.
+### Recency skoor
 
-### Frequency
+Recency skoor on vastupidine:
 
-- skoor 5 – klient ostab väga sageli;
-- skoor 1 – klient on ostnud väga vähe.
+- skoor **5** – klient ostis suhteliselt hiljuti;
+- skoor **1** – kliendi viimasest ostust on möödunud palju aega.
 
-### Monetary
+### Frequency skoor
 
-- skoor 5 – klient kulutab palju;
-- skoor 1 – klient kulutab vähe.
+- skoor **5** – klient ostab sageli;
+- skoor **1** – klient on ostnud harva.
 
-Kliendi lõplik RFM-skoor arvutati valemiga:
+### Monetary skoor
+
+- skoor **5** – klient on kulutanud palju;
+- skoor **1** – klient on kulutanud vähe.
+
+RFM-koguskoor arvutati valemiga:
 
 ```text
 RFM-skoor = R-skoor + F-skoor + M-skoor
 ```
 
-Võimalik koguskoor oli vahemikus 3–15.
+Skooride kontroll:
+
+| Skoor | Miinimum | Maksimum |
+|---|---:|---:|
+| R-skoor | 1 | 5 |
+| F-skoor | 1 | 5 |
+| M-skoor | 1 | 5 |
+| RFM-koguskoor | 3 | 15 |
 
 ## Kliendisegmendid
 
-Jagasin kliendid RFM-koguskoori järgi viide segmenti:
+Kliendid jagasin RFM-koguskoori järgi viide segmenti:
 
-| RFM-skoor | Segment | Tähendus |
+| RFM-skoor | Segment | Kirjeldus |
 |---:|---|---|
 | 13–15 | VIP Champions | kõige väärtuslikumad ja aktiivsemad kliendid |
 | 10–12 | Loyal Customers | regulaarsed ja lojaalsed kliendid |
 | 7–9 | Potential Loyalists | hea kasvupotentsiaaliga kliendid |
-| 4–6 | At Risk | kliendid, kelle aktiivsus on vähenenud |
+| 4–6 | At Risk | vähenenud ostuaktiivsusega kliendid |
 | 3 | Lost | kaua mitteaktiivsed ja väikese väärtusega kliendid |
 
 ## Segmentide jaotus
 
 | Segment | Klientide arv | Osakaal klientidest |
 |---|---:|---:|
-| Potential Loyalists | 768 | 30,12% |
-| Loyal Customers | 667 | 26,16% |
-| At Risk | 538 | 21,10% |
-| VIP Champions | 465 | 18,24% |
-| Lost | 112 | 4,39% |
-| **Kokku** | **2550** | **100%** |
+| Potential Loyalists | 759 | 29,88% |
+| Loyal Customers | 679 | 26,73% |
+| At Risk | 529 | 20,83% |
+| VIP Champions | 455 | 17,91% |
+| Lost | 118 | 4,65% |
+| **Kokku** | **2540** | **100%** |
 
-Kõige suurem segment oli **Potential Loyalists**, kuhu kuulus 768 klienti.
+Kõige suurem segment oli **Potential Loyalists**, kuhu kuulus 759 klienti.
 
 ## Segmentide tulemused
 
-| Segment | Klientide arv | Keskmine Recency | Keskmine ostude arv | Keskmine kogukulu | Kogukäive |
+| Segment | Kliente | Keskmine Recency | Keskmine Frequency | Keskmine Monetary | Kogukäive |
 |---|---:|---:|---:|---:|---:|
-| VIP Champions | 465 | 524,22 päeva | 11,74 | 3829,20 € | 1 780 577,59 € |
-| Loyal Customers | 667 | 634,84 päeva | 5,90 | 1799,91 € | 1 200 540,55 € |
-| Potential Loyalists | 768 | 682,68 päeva | 3,63 | 964,65 € | 740 850,95 € |
-| At Risk | 538 | 798,95 päeva | 2,13 | 513,41 € | 276 214,89 € |
-| Lost | 112 | 981,79 päeva | 1,26 | 219,38 € | 24 570,51 € |
-| **Kokku** | **2550** |  |  |  | **4 022 754,49 €** |
+| VIP Champions | 455 | 534,66 päeva | 7,68 | 2519,33 € | 1 146 295,15 € |
+| Loyal Customers | 679 | 631,29 päeva | 3,84 | 1172,84 € | 796 357,18 € |
+| Potential Loyalists | 759 | 693,49 päeva | 2,49 | 687,47 € | 521 792,88 € |
+| At Risk | 529 | 795,57 päeva | 1,59 | 363,27 € | 192 170,22 € |
+| Lost | 118 | 1002,88 päeva | 1,01 | 171,48 € | 20 235,11 € |
+| **Kokku** | **2540** |  |  |  | **2 676 850,54 €** |
 
 ## Käibe jaotus segmentide vahel
 
 | Segment | Kogukäive | Osakaal analüüsitud käibest |
 |---|---:|---:|
-| VIP Champions | 1 780 577,59 € | 44,26% |
-| Loyal Customers | 1 200 540,55 € | 29,84% |
-| Potential Loyalists | 740 850,95 € | 18,42% |
-| At Risk | 276 214,89 € | 6,87% |
-| Lost | 24 570,51 € | 0,61% |
-| **Kokku** | **4 022 754,49 €** | **100%** |
+| VIP Champions | 1 146 295,15 € | 42,82% |
+| Loyal Customers | 796 357,18 € | 29,75% |
+| Potential Loyalists | 521 792,88 € | 19,49% |
+| At Risk | 192 170,22 € | 7,18% |
+| Lost | 20 235,11 € | 0,76% |
+| **Kokku** | **2 676 850,54 €** | **100%** |
 
 VIP Champions ja Loyal Customers moodustasid kokku:
 
-- **44,39% analüüsitud klientidest**
-- **74,11% analüüsitud kogukäibest**
+- **44,64% analüüsitud klientidest**
+- **72,57% analüüsitud kogukäibest**
 
-See näitab, et suur osa ettevõtte käibest sõltub aktiivsetest ja lojaalsetest klientidest.
+See tähendab, et ligi kolmveerand analüüsitud käibest tuli ettevõtte aktiivsetelt ja lojaalsetelt klientidelt.
 
 ## Peamised leiud
 
-### 1. VIP Champions on kõige väärtuslikum segment
+### VIP Champions
 
-VIP Champions segmenti kuulus 465 klienti ehk 18,24% analüüsitud klientidest.
+VIP Champions segmenti kuulus:
 
-Nad:
+- **455 klienti**
+- **17,91% klientidest**
 
-- tegid keskmiselt 11,74 ostu;
-- kulutasid keskmiselt 3829,20 € kliendi kohta;
-- tõid kokku 1 780 577,59 € käivet;
-- moodustasid 44,26% kogu RFM-analüüsi käibest.
+VIP-kliendid:
 
-Kuigi VIP-kliente ei olnud arvuliselt kõige rohkem, andsid nad kõige suurema osa käibest.
+- tegid keskmiselt 7,68 ostu;
+- kulutasid keskmiselt 2519,33 € kliendi kohta;
+- tõid kokku 1 146 295,15 € käivet;
+- moodustasid 42,82% analüüsitud käibest.
 
-### 2. Loyal Customers on ettevõtte teine kõige olulisem segment
+VIP Champions on kõige väärtuslikum kliendisegment.
 
-Loyal Customers segmenti kuulus 667 klienti.
+### Loyal Customers
 
-Nende:
+Loyal Customers segmenti kuulus:
 
-- keskmine ostude arv oli 5,90;
-- keskmine kogukulu oli 1799,91 €;
-- kogukäive oli 1 200 540,55 €;
-- osakaal analüüsitud käibest oli 29,84%.
-
-Koos VIP Champions segmendiga moodustasid nad üle 74% analüüsitud kogukäibest.
-
-### 3. Potential Loyalists on suurim kasvuvõimalus
-
-Potential Loyalists oli suurim segment 768 kliendiga.
-
-See moodustas 30,12% kõigist analüüsitud klientidest.
+- **679 klienti**
+- **26,73% klientidest**
 
 Nende:
 
-- keskmine ostude arv oli 3,63;
-- keskmine kogukulu oli 964,65 €;
-- kogukäive oli 740 850,95 €.
+- keskmine ostude arv oli 3,84;
+- keskmine kogukulu oli 1172,84 €;
+- kogukäive oli 796 357,18 €;
+- käibe osakaal oli 29,75%.
 
-Tegemist on ettevõtte suurima kasvupotentsiaaliga grupiga, sest sobiva pakkumise korral võib osa neist liikuda Loyal Customers või VIP Champions segmenti.
+Koos VIP Champions segmendiga andsid nad 72,57% analüüsitud kogukäibest.
 
-### 4. At Risk segment vajab kiiret tähelepanu
+### Potential Loyalists
 
-At Risk segmenti kuulus 538 klienti ehk 21,10% analüüsitud klientidest.
+Potential Loyalists oli suurim segment:
 
-Nende:
-
-- viimasest ostust oli möödunud keskmiselt 798,95 päeva;
-- keskmine ostude arv oli 2,13;
-- keskmine kogukulu oli 513,41 €;
-- kogukäive oli 276 214,89 €.
-
-Need kliendid ei ole veel täielikult kadunud, kuid nende ostuaktiivsus on vähenenud. Seetõttu vajavad nad kiiret ja eraldi suunatud tagasivõitmise kampaaniat.
-
-### 5. Lost segmendi majanduslik väärtus on väike
-
-Lost segmenti kuulus 112 klienti.
+- **759 klienti**
+- **29,88% klientidest**
 
 Nende:
 
-- viimasest ostust oli möödunud keskmiselt 981,79 päeva;
-- keskmine ostude arv oli 1,26;
-- keskmine kogukulu oli 219,38 €;
-- kogukäive oli 24 570,51 €;
-- osakaal analüüsitud käibest oli ainult 0,61%.
+- keskmine ostude arv oli 2,49;
+- keskmine kogukulu oli 687,47 €;
+- kogukäive oli 521 792,88 €.
 
-Selle segmendi tagasivõitmiseks ei ole mõistlik teha väga kulukaid personaalseid kampaaniaid enne, kui on hinnatud kampaania võimalikku tasuvust.
+See segment kujutab endast ettevõtte suurimat kasvuvõimalust, sest osa klientidest võib sobivate pakkumiste abil liikuda lojaalsete või VIP-klientide hulka.
+
+### At Risk
+
+At Risk segmenti kuulus:
+
+- **529 klienti**
+- **20,83% klientidest**
+
+Nende:
+
+- viimasest ostust oli möödunud keskmiselt 795,57 päeva;
+- keskmine ostude arv oli 1,59;
+- keskmine kogukulu oli 363,27 €;
+- kogukäive oli 192 170,22 €.
+
+Need kliendid vajavad tagasivõitmise kampaaniat, sest nende ostuaktiivsus on vähenenud.
+
+### Lost
+
+Lost segmenti kuulus:
+
+- **118 klienti**
+- **4,65% klientidest**
+
+Nende:
+
+- viimasest ostust oli möödunud keskmiselt 1002,88 päeva;
+- keskmine ostude arv oli 1,01;
+- keskmine kogukulu oli 171,48 €;
+- kogukäive oli 20 235,11 €;
+- käibe osakaal oli ainult 0,76%.
+
+Selle segmendi tagasivõitmiseks ei ole mõistlik kasutada kulukaid personaalseid kampaaniaid enne võimaliku tasuvuse hindamist.
 
 ## Soovitused Markole
 
@@ -298,63 +357,63 @@ VIP-klientidele soovitan pakkuda:
 
 - personaalset teenindust;
 - varajast ligipääsu uutele toodetele;
-- eksklusiivseid pakkumisi;
+- eksklusiivseid soodustusi;
 - VIP-programmi;
-- ostuajalool põhinevaid soovitusi.
+- ostuajalool põhinevaid tootesoovitusi.
 
-Eesmärk on hoida kõige väärtuslikumaid kliente ja vähendada nende lahkumise riski.
+Eesmärk on säilitada kõige väärtuslikumate klientide lojaalsus.
 
 ### Loyal Customers
 
 Lojaalsetele klientidele sobivad:
 
+- lojaalsusprogramm;
 - punktisüsteem;
 - kordusostu soodustused;
 - personaalsed pakkumised;
-- lojaalsustasemete süsteem;
 - soovitusprogrammid.
 
-Eesmärk on suurendada ostusagedust ja aidata osal klientidest liikuda VIP Champions segmenti.
+Eesmärk on suurendada nende ostusagedust ja aidata osal klientidest liikuda VIP Champions segmenti.
 
 ### Potential Loyalists
 
 Potential Loyalists segmendile soovitan:
 
 - tasuta tarnet;
-- piiratud kehtivusega sooduskoodi;
 - järgmise ostu boonust;
+- piiratud kehtivusega sooduskoodi;
 - seotud toodete soovitusi;
 - personaliseeritud e-kirju.
 
-See on arvuliselt kõige suurem segment ning seetõttu oluline võimalus kasvatada lojaalsete klientide hulka.
+See segment on arvuliselt kõige suurem ja pakub seetõttu olulist kasvuvõimalust.
 
 ### At Risk
 
-At Risk klientidele soovitan saata:
+At Risk klientidele sobivad:
 
 - „Me igatseme sind” kampaania;
-- personaalse tagasitulekupakkumise;
+- personaalne tagasitulekupakkumine;
 - viimase ostuga seotud tootesoovitused;
-- piiratud tähtajaga soodustuse;
-- lühikese küsimustiku kliendi kadumise põhjuse mõistmiseks.
+- piiratud kehtivusega soodustus;
+- lühike tagasisideküsimustik.
 
-See segment vajab kõige kiiremat sekkumist.
+See segment vajab kiiret tähelepanu, sest kliendid ei ole veel täielikult kadunud.
 
 ### Lost
 
 Lost segmendile sobib esmalt odavam automatiseeritud kampaania.
 
-Suurema allahindluse või personaalse teeninduse kasutamine peaks sõltuma sellest, kas kliendi varasem väärtus ja võimalik tagasivõitmise tulu õigustavad kampaaniakulu.
+Suuremat allahindlust või personaalset teenindust tuleks kasutada ainult siis, kui kliendi varasem väärtus õigustab kampaania maksumust.
 
 ## Juhtimissoovitus
 
-UrbanStyle peaks kasutama erinevate segmentide jaoks erinevat kliendisuhtlust.
+UrbanStyle ei peaks saatma kõigile klientidele ühesuguseid pakkumisi.
 
-Esimene prioriteet on hoida **VIP Champions** ja **Loyal Customers** kliente, sest need kaks segmenti annavad kokku 74,11% analüüsitud kogukäibest.
+Esimene prioriteet on hoida **VIP Champions** ja **Loyal Customers** kliente, sest nad annavad kokku 72,57% analüüsitud käibest.
 
-Kasvu seisukohalt on kõige olulisem **Potential Loyalists**, sest see on 768 kliendiga kõige suurem segment.
+Kasvu seisukohalt on kõige olulisem **Potential Loyalists**, sest see on 759 kliendiga kõige suurem segment.
 
-Kõige kiiremat tähelepanu vajab **At Risk**, kus on 538 klienti, kelle aktiivsus on langenud, kuid kellel võib olla veel tagasivõitmise potentsiaali.
+Kiiret tähelepanu vajab **At Risk**, kus on 529 vähenenud aktiivsusega klienti.
 
 **Lost** segmendi puhul tuleb enne suurema turunduskulu tegemist hinnata kampaania tasuvust.
 
@@ -369,13 +428,13 @@ Koostasin Plotly Expressi abil kolm interaktiivset visualiseeringut:
    Näitab, millised segmendid annavad ettevõttele kõige suurema rahalise väärtuse.
 
 3. **Ostusageduse ja kogukulu hajuvusdiagramm**  
-   Näitab seost kliendi ostude arvu, kogukulutuse ja RFM-segmendi vahel.
+   Näitab seost kliendi ostusageduse, kogukulutuse ja RFM-segmendi vahel.
 
-Hajuvusdiagramm näitas selgelt, et VIP Champions kliendid paiknevad suurema ostusageduse ja kogukulutuse piirkonnas.
+Visualiseeringud käivitasin pärast `invoice_id` järgi duplikaatide eemaldamist uuesti, et need põhineksid parandatud andmetel.
 
 ## Tulemuste kontrollimine
 
-Kontrollisin analüüsi vahetulemusi järgmiste käskude ja meetoditega:
+Kontrollisin analüüsi järgmiste pandas käskude ja meetoditega:
 
 - `df.shape`
 - `df.head()`
@@ -383,69 +442,92 @@ Kontrollisin analüüsi vahetulemusi järgmiste käskude ja meetoditega:
 - `df.dtypes`
 - `df.isnull().sum()`
 - `df.duplicated().sum()`
+- `df.duplicated(subset="invoice_id").sum()`
+- `df.drop_duplicates(subset="invoice_id")`
 - `df.describe()`
 - `value_counts()`
+- `groupby()`
+- `agg()`
 - segmentide kokkuvõttetabel
-- segmentide klientide arvu kontroll
-- segmentide kogukäibe kontroll
+- klientide kontrollsumma
+- kogukäibe kontrollsumma
 
-Kontrollisin ka, et:
+Kontrolli tulemused:
 
-- tabelite ühendamisel säilis 15 234 müügirida;
-- RFM-andmetes ei olnud pärast puhastamist puuduvaid väärtusi;
-- segmentide klientide arvude summa oli 2550;
-- segmentide kogukäibe summa oli 4 022 754,49 €.
+- esialgne müügiridade arv oli **15 234**;
+- `invoice_id` järgi leiti **5116 korduvat kirjet**;
+- pärast dedupeerimist jäi **10 118 müügirida**;
+- RFM-andmetesse jäi **8950 müügikirjet**;
+- RFM-andmetes oli **0 puuduvat väärtust**;
+- RFM-tabelisse jõudis **2540 klienti**;
+- kõik kliendid said segmendi;
+- segmentide klientide summa oli **2540**;
+- segmentide kogukäibe summa oli **2 676 850,54 €**;
+- R-, F- ja M-skoorid jäid vahemikku **1–5**;
+- RFM-koguskoor jäi vahemikku **3–15**.
+
+## Analüüsi piirangud
+
+Analüüsi tulemuste tõlgendamisel tuleb arvestada, et:
+
+- RFM-analüüsi kaasati ainult positiivse väärtusega tehingud;
+- tagastusi ja paranduskandeid ei analüüsitud eraldi;
+- `Frequency` näitab analüüsi kaasatud müügikirjete arvu;
+- kliendid, kelle müügiridadel puudus `customer_id`, jäid RFM-analüüsist välja;
+- segmendid moodustati andmestiku siseste kvintiilide alusel;
+- kõrge Recency väärtus näitab, et andmestiku ostud ei ole väga hiljutised;
+- tulemused kirjeldavad analüüsitud andmestikku ega pruugi täielikult kajastada ettevõtte praegust kliendibaasi.
 
 ## Õpikohad
 
 Selle töö käigus õppisin:
 
-- kuidas luua Pythonis ühendus Supabase’iga;
-- kuidas laadida rohkem kui 1000 rida sisaldavaid tabeleid lehekülgede kaupa;
-- kuidas kasutada pandas DataFrame’e;
-- kuidas kontrollida andmete struktuuri ja kvaliteeti;
-- kuidas ühendada tabeleid `merge()` funktsiooniga;
-- kuidas kasutada `groupby()` ja `agg()` funktsioone;
-- kuidas teisendada tekstina salvestatud kuupäevi;
-- kuidas arvutada RFM-näitajaid;
-- kuidas kasutada `qcut()` funktsiooni skooride määramiseks;
-- kuidas luua tingimusliku funktsiooniga kliendisegmente;
-- kuidas visualiseerida tulemusi Plotly Expressiga;
-- kuidas muuta tehniline analüüs juhtimisotsust toetavaks andmelooks.
+- laadima andmeid Supabase’ist pandas DataFrame’i;
+- ühendama tabeleid `merge()` funktsiooniga;
+- kontrollima DataFrame’i struktuuri ja andmekvaliteeti;
+- eristama täielikke duplikaate ärilise võtme duplikaatidest;
+- puhastama puuduvaid ja vigaseid väärtusi;
+- teisendama kuupäevi `datetime` andmetüübiks;
+- kasutama `groupby()` ja `agg()` funktsioone;
+- arvutama Recency, Frequency ja Monetary näitajaid;
+- kasutama `pd.qcut()` funktsiooni;
+- looma kliendisegmente;
+- kontrollima koondtulemuste õigsust;
+- visualiseerima tulemusi Plotly Expressiga;
+- muutma tehnilise analüüsi ärilisteks järeldusteks.
 
 ## AI kasutamine
 
 Kasutasin AI-d:
 
-- Pythoni ja Jupyteri töökeskkonna seadistamisel;
+- Pythoni ja Jupyter Notebooki seadistamisel;
 - Supabase’i ühenduse loomisel;
-- pandas `merge()` loogika kontrollimisel;
-- RFM-arvutuse sammude koostamisel;
-- `qcut()` ja skooride määramise selgitamisel;
-- Plotly graafikute koostamisel;
-- veateadete mõistmisel;
-- README struktuuri ja sõnastuse kontrollimisel.
+- pandas koodi koostamisel ja kontrollimisel;
+- `merge()`, `groupby()`, `agg()` ja `qcut()` funktsioonide mõistmisel;
+- veateadete selgitamisel;
+- RFM-loogika kontrollimisel;
+- Plotly visualiseeringute koostamisel;
+- README struktuuri ja sõnastuse parandamisel.
 
-Kontrollisin AI abil loodud lahendused ise üle:
-
-- käivitasin iga sammu eraldi;
-- vaatasin üle vahetulemused;
-- kontrollisin mõõtmeid ja puuduvaid väärtusi;
-- võrdlesin segmentide loendusi;
-- kontrollisin käibe summasid;
-- hindasin, kas tulemused olid äriliselt loogilised.
+Kontrollisin AI abil koostatud koodi ise, käivitades kõik lahtrid ning võrreldes ridade arve, puuduvaid väärtusi, segmentide tulemusi ja kogusummasid.
 
 ## Failid
 
-- `Nadal_7_Python_Pandas.ipynb` – täielik Jupyter Notebook koos koodi, tulemuste, tabelite, visualiseeringute ja järeldustega
-- `README.md` – töö eesmärgi, meetodi, tulemuste ja soovituste kokkuvõte
+- `Nadal_7_Python_Pandas.ipynb` – Jupyter Notebook koos koodi, tulemuste ja visualiseeringutega
+- `README.md` – individuaalse töö eesmärgi, meetodi, tulemuste ja soovituste kokkuvõte
 
 ## Kokkuvõte
 
-Nädala 7 individuaalse töö tulemusena valmis terviklik Python ja pandas analüüs, mis ühendab andmete laadimise, puhastamise, RFM-arvutuse, kliendisegmenteerimise ja visualiseerimise.
+Nädala 7 individuaalse töö tulemusena valmis Pythonis ja pandas teegiga UrbanStyle’i klientide RFM-analüüs.
 
-Analüüs näitas, et UrbanStyle’i kõige väärtuslikumad kliendid on VIP Champions ja Loyal Customers. Koos annavad nad 74,11% analüüsitud kogukäibest.
+Pärast `invoice_id` järgi duplikaatide eemaldamist jäi analüüsi 8950 müügikirjet ja 2540 klienti.
 
-Kõige suurem kasvuvõimalus on Potential Loyalists segment ning kõige kiiremat tähelepanu vajab At Risk segment.
+Kõige väärtuslikum segment oli **VIP Champions**, kuhu kuulus 455 klienti. Nad moodustasid 17,91% klientidest, kuid andsid 42,82% analüüsitud käibest.
 
-RFM-analüüs võimaldab UrbanStyle’il loobuda kõigile klientidele sama pakkumise saatmisest ning kasutada erinevate kliendigruppide puhul sihipärasemat ja andmetel põhinevat lähenemist.
+VIP Champions ja Loyal Customers moodustasid kokku 44,64% klientidest ning andsid 72,57% kogukäibest.
+
+Kõige suurem kasvuvõimalus oli **Potential Loyalists**, kuhu kuulus 759 klienti.
+
+Kõige kiiremat tähelepanu vajab **At Risk** segment, kuhu kuulus 529 klienti.
+
+RFM-analüüsi põhjal saab UrbanStyle kasutada erinevate kliendisegmentide jaoks sihipärasemaid pakkumisi ja turunduskampaaniaid.
