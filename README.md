@@ -4,19 +4,20 @@ Tere!
 
 See on minu DACA andmeanalüütika õppeprogrammi individuaalne portfoolio. Siia koondan programmi jooksul valminud analüüsid, SQL-lahendused, visualiseeringud, dashboard’id, Pythoni tööd ja õpimärkmed.
 
-Portfoolio annab ülevaate minu arengust andmeanalüütikuna ning näitab, kuidas olen liikunud andmete kvaliteedi kontrollimisest ja SQL-päringutest andmete visualiseerimise, dashboard’ide ning kliendisegmenteerimiseni.
+Portfoolio annab ülevaate minu arengust andmeanalüütikuna ning näitab, kuidas olen liikunud andmete kvaliteedi kontrollimisest ja SQL-päringutest andmete visualiseerimise, dashboard’ide, kliendisegmenteerimise ning automatiseeritud andmetöötluseni.
 
 ## Nädalad
 
 | Nädal | Teema | Põhifookus |
 |---|---|---|
-| [Week 1](./week-1/) | SQL Basics | Müügiandmete uurimine ja andmekvaliteedi esmane kontroll |
-| [Week 2](./week-2/) | SQL Data Cleaning | Duplikaatide, puuduvate väärtuste ja vormindusprobleemide kontroll |
-| [Week 3](./week-3/) | SQL JOINs | Erinevate andmetabelite ühendamine ja seoste analüüsimine |
-| [Week 4](./week-4/) | SQL Aggregation | Koondnäitajad, grupeerimine ja äriliste järelduste koostamine |
-| [Week 5](./week-5/) | Visualiseerimise disain | Sobivate diagrammide, paigutuse ja visuaalse hierarhia kavandamine |
-| [Week 6](./week-6/) | Andmelugu ja dashboard’i viimistlemine | Power BI dashboard, andmelugu ja juhtimisotsuseid toetav kokkuvõte |
-| [Week 7](./week-7/) | Python ja Pandas | Supabase’i andmete laadimine, RFM-analüüs ja kliendisegmenteerimine |
+| [Week 1](https://github.com/kolgalys-max/daca-portfolio/blob/main/week-1) | SQL Basics | Müügiandmete uurimine ja andmekvaliteedi esmane kontroll |
+| [Week 2](https://github.com/kolgalys-max/daca-portfolio/blob/main/week-2) | SQL Data Cleaning | Duplikaatide, puuduvate väärtuste ja vormindusprobleemide kontroll |
+| [Week 3](https://github.com/kolgalys-max/daca-portfolio/blob/main/week-3) | SQL JOINs | Erinevate andmetabelite ühendamine ja seoste analüüsimine |
+| [Week 4](https://github.com/kolgalys-max/daca-portfolio/blob/main/week-4) | SQL Aggregation | Koondnäitajad, grupeerimine ja äriliste järelduste koostamine |
+| [Week 5](https://github.com/kolgalys-max/daca-portfolio/blob/main/week-5) | Visualiseerimise disain | Sobivate diagrammide, paigutuse ja visuaalse hierarhia kavandamine |
+| [Week 6](https://github.com/kolgalys-max/daca-portfolio/blob/main/week-6) | Andmelugu ja dashboard’i viimistlemine | Power BI dashboard, andmelugu ja juhtimisotsuseid toetav kokkuvõte |
+| [Week 7](https://github.com/kolgalys-max/daca-portfolio/blob/main/week-7) | Python ja Pandas | Supabase’i andmete laadimine, RFM-analüüs ja kliendisegmenteerimine |
+| [Week 8](https://github.com/kolgalys-max/daca-portfolio/blob/main/week-8) | Python APIs ja automatiseeritud andmepipeline | Andmete pärimise, töötlemise, analüüsi, visualiseerimise ja ekspordi ühendamine automatiseeritud pipeline’iks |
 
 ## Kasutatud tööriistad
 
@@ -25,6 +26,7 @@ Portfoolio annab ülevaate minu arengust andmeanalüütikuna ning näitab, kuida
 - SQL
 - Python
 - pandas
+- Plotly
 - Plotly Express
 - Jupyter Notebook
 - GitHub
@@ -37,6 +39,8 @@ Portfoolio annab ülevaate minu arengust andmeanalüütikuna ning näitab, kuida
 Portfoolio eesmärk on dokumenteerida minu arengut andmeanalüütikuna ning koondada DACA programmi jooksul valminud individuaalsed tööd ühte GitHubi repositooriumi.
 
 Iga nädala töö keskendub erinevale andmeanalüüsi etapile. Tööde kaudu olen õppinud andmeid uurima, puhastama, ühendama, analüüsima, visualiseerima ja esitama viisil, mis toetab ärilisi otsuseid.
+
+Programmi edenedes olen liikunud ka korduvkasutatavate ja automatiseeritud andmetöötlusprotsesside loomise suunas.
 
 ## Omandatud oskused
 
@@ -61,6 +65,10 @@ Programmi jooksul olen tegelenud järgmiste teemadega:
 - pandas DataFrame’ide kasutamine;
 - RFM-kliendisegmenteerimine;
 - Plotly interaktiivsete graafikute loomine;
+- Pythonis modulaarse andmetöötluse kasutamine;
+- erinevate tööetappide ühendamine automatiseeritud pipeline’iks;
+- andmetöötlusprotsessi logimine ja vigade käsitlemine;
+- analüüsitulemuste automaatne eksportimine;
 - analüüsitulemuste sidumine äriliste soovitustega.
 
 ## Portfoolio sisu
@@ -83,14 +91,14 @@ Kaustades võivad olla:
 
 ## Tööde ülesehitus
 
-Nädalate README-failid sisaldavad üldjuhul:
+Nädalate README-failid sisaldavad vastavalt nädala ülesandele üldjuhul:
 
 1. projekti eesmärki;
-2. äriküsimust;
+2. äriküsimust või analüüsi eesmärki;
 3. kasutatud andmeid ja tööriistu;
 4. tehtud töö kirjeldust;
 5. kasutatud meetodit;
-6. olulisemaid arvulisi tulemusi;
+6. olulisemaid tulemusi;
 7. andmekvaliteedi kontrolli;
 8. visualiseeringuid;
 9. järeldusi;
@@ -111,9 +119,12 @@ Järgmistes etappides õppisin:
 - valima sobivaid visualiseeringuid;
 - koostama Power BI dashboard’e;
 - esitama tulemusi juhtimisotsuseid toetava andmeloona;
-- kasutama Pythonit ja pandas teeki korduvama ning detailsema analüüsi tegemiseks.
+- kasutama Pythonit ja pandas teeki korduvama ning detailsema analüüsi tegemiseks;
+- ühendama erinevaid Pythoni andmetöötluse etappe automatiseeritud protsessiks.
 
-Nädal 7 lisas portfooliosse Pythonil põhineva töövoo, kus laadisin andmed otse Supabase’ist, puhastasin need pandas abil, arvutasin RFM-näitajad ning jagasin kliendid ostukäitumise põhjal segmentidesse.
+Nädal 7 lisas portfooliosse Pythonil põhineva töövoo, kus laadisin andmed Supabase’ist, puhastasin need pandas abil, arvutasin RFM-näitajad ning jagasin kliendid ostukäitumise põhjal segmentidesse.
+
+Nädal 8 viis selle töövoo järgmisele tasemele. Õppisin, kuidas andmete pärimine, puhastamine, transformatsioon, KPI-de arvutamine, andmestike ühendamine, visualiseerimine ja tulemuste eksportimine ühendada üheks automatiseeritud andmepipeline’iks. Pipeline võimaldab sama analüüsiprotsessi uuesti käivitada värskendatud andmetega ning logimine aitab jälgida protsessi käiku ja võimalikke vigu.
 
 ## AI kasutamine
 
@@ -139,6 +150,7 @@ Järgmistes töödes soovin edasi arendada:
 - Pythoni kasutamist andmeanalüüsis;
 - korduvkasutatavate analüüsifunktsioonide loomist;
 - andmetöötluse automatiseerimist;
+- automatiseeritud pipeline’ide kasutamist;
 - visualiseerimise ja andmeloo oskust;
 - äriliste soovituste täpsust;
 - GitHubi portfoolio professionaalset esitlemist.
