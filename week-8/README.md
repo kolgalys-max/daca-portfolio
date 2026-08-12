@@ -1,102 +1,111 @@
-# Week 8 – Python API-d ja automatiseerimine
+# Week 8 – Python APIs ja automatiseeritud andmepipeline
 
-## Eesmärk
+## Individuaalne töö
 
-Nädala 8 eesmärk oli õppida kasutama Pythonit ja Supabase API-t automatiseeritud andmetöötluses ning ühendada andmete pärimine, töötlemine, analüüs ja visualiseerimine üheks terviklikuks pipeline'iks.
+### Eesmärk
 
-Varasemalt kasutatud staatiliste CSV-failide asemel võimaldab API pärida andmed otse andmebaasist ning sama analüüsiprotsessi uuesti käivitada värskendatud andmetega.
+Individuaalse töö eesmärk oli rakendada nädala jooksul õpitut automatiseeritud andmepipeline'i loomisel ning mõista, kuidas erinevad andmetöötluse etapid ühendatakse üheks terviklikuks protsessiks.
 
-## Minu alaülesanne
+Töö keskendus Pythonis loodud pipeline'i käivitamisele, mis ühendab andmete pärimise, töötlemise, analüüsi, visualiseerimise ja tulemuste salvestamise.
 
-Minu ülesanne oli automatiseerimise skripti ehk `pipeline.py` loomine ja pipeline'i erinevate etappide ühendamine.
+## Töö kirjeldus
 
-`pipeline.py` ülesanne on juhtida kogu protsessi ning käivitada vajalikud etapid õiges järjekorras:
+Individuaalse töö käigus kasutasin `pipeline.py` faili, mis juhib kogu andmetöötluse protsessi.
 
-1. andmete pärimine Supabase API-st;
-2. andmete puhastamine ja transformeerimine;
-3. KPI-de arvutamine;
-4. vajalike andmete ühendamine;
+Pipeline ühendab järgmised etapid:
+
+1. andmete pärimine;
+2. andmete puhastamine ja transformatsioon;
+3. KPI-de ja nädalapõhiste koondnäitajate arvutamine;
+4. andmestike ühendamine;
 5. visualiseeringute loomine;
-6. tulemuste salvestamine;
+6. tulemuste eksportimine;
 7. protsessi käigu logimine ja vigade käsitlemine.
 
-Pipeline käivitatakse ühe käsuga: `python pipeline.py`.
+Pipeline käivitatakse ühe käsuga:
 
-## Minu artefakt
+```bash
+python pipeline.py
+```
 
-Minu individuaalne artefakt on:
+## Pipeline'i töövoog
 
-`individual/pipeline.py`
+```text
+Andmete pärimine
+      ↓
+Andmete puhastamine ja transformatsioon
+      ↓
+KPI-de ja koondnäitajate arvutamine
+      ↓
+Andmestike ühendamine
+      ↓
+Visualiseeringute loomine
+      ↓
+Tulemuste eksport
+```
 
-Skript ühendab meeskonnatöö käigus loodud eraldi moodulid üheks automatiseeritud töövooks.
+`pipeline.py` kasutab eraldi moodulites olevaid funktsioone ning ühendab need üheks järjestikuseks tööprotsessiks.
 
-Pipeline'i üldine loogika:
+## Automatiseerimine
 
-**Supabase API → andmete pärimine → transformatsioon → analüüs → visualiseerimine → väljundfailid**
+Pipeline'i kasutamise peamine eelis on see, et erinevaid tööetappe ei pea eraldi käsitsi käivitama.
 
-## Tulemus
+Ühe käivitusega toimub kogu protsess järjest:
 
-Pipeline'i testimisel käivitus protsess algusest lõpuni edukalt.
+- andmed loetakse sisse;
+- andmed töödeldakse;
+- arvutatakse vajalikud näitajad;
+- luuakse visualiseeringud;
+- tulemused eksporditakse;
+- protsessi käik logitakse.
 
-Eduka käivitamise tulemusena luuakse automaatselt analüüsi väljundid, sealhulgas:
+See muudab analüüsi korratavaks ning võimaldab sama protsessi uuesti käivitada värskendatud andmetega.
 
-- nädalapõhise tulu visualiseering;
-- KPI-de visualiseering;
-- RFM-andmestik CSV-formaadis.
+## Väljundid
 
-Pipeline võimaldab sama analüüsi uuesti käivitada ilma, et kõiki töötlusetappe peaks käsitsi eraldi kordama.
+Pipeline'i tulemusena luuakse analüüsi väljundid `output` kausta.
 
-## Meeskonna tulemus
+Töö käigus kasutatud pipeline loob muu hulgas:
 
-Meeskonnatöö tulemusena valmis modulaarne automatiseeritud pipeline, mis:
+- nädalapõhise müügitulu visualiseeringu;
+- KPI-de kokkuvõtte;
+- töödeldud andmefaili.
 
-- pärib andmed UrbanStyle Supabase API-st;
-- töötleb andmed pandas abil;
-- arvutab analüüsiks vajalikud näitajad;
-- loob visualiseeringud;
-- salvestab tulemused väljundfailidesse;
-- ühendab erinevad tööetapid üheks käivitatavaks protsessiks.
+Pipeline mõõdab ka protsessi täitmise aega ning kuvab pärast edukat käivitamist töödeldud ridade arvu.
 
-Pipeline'i toimimist kontrolliti tervikuna käsuga `python pipeline.py`.
+## Veakäsitlus ja logimine
 
-Meeskonna ühise töö dokumentatsioon:
+Pipeline sisaldab protsessi jälgimiseks logimist.
 
-`team/week8_pipeline_demo.md`
+Logides kuvatakse pipeline'i peamised etapid:
 
-## Mida õppisin
+- andmete pärimine;
+- andmete töötlemine;
+- visualiseeringute loomine;
+- tulemuste eksportimine;
+- pipeline'i lõpetamine.
 
-Selle nädala töö käigus õppisin, kuidas eraldi Python-moodulid üheks terviklikuks andmepipeline'iks ühendada.
+Kui protsessi käigus tekib viga, salvestatakse veateade logisse ning viga tõstetakse edasi. See aitab tuvastada, millises tööetapis probleem tekkis.
 
-Sain paremini aru, et automatiseeritud analüüsi puhul ei piisa ainult sellest, et erinevad koodiosad eraldi töötavad. Oluline on ka nende omavaheline sobivus, õige käivitamise järjekord, veakäsitlus ning kontroll, et kogu protsess töötaks algusest lõpuni.
+## Õpitulemus
 
-API kasutamine võimaldab vähendada käsitsi failide laadimist ning kasutada analüüsis värskemaid andmeid kui staatiliste CSV-failide puhul.
+Töö käigus sain praktilise ülevaate sellest, kuidas eraldi Pythonis loodud andmetöötluse moodulid ühendatakse üheks automatiseeritud pipeline'iks.
 
-## Refleksioon
+Olulisemad õppetunnid:
 
-### Kuidas API parandab töövoogu võrreldes CSV-failidega?
+- pipeline võimaldab ühendada mitu andmetöötluse etappi üheks protsessiks;
+- automatiseerimine vähendab käsitsi tehtavate sammude hulka;
+- logimine aitab jälgida protsessi käiku ja leida vigu;
+- väljundite automaatne loomine muudab analüüsi korratavaks;
+- sama pipeline'i saab uuesti kasutada värskendatud andmetega.
 
-API võimaldab andmeid pärida otse andmeallikast. CSV-faili puhul tuleb fail eraldi alla laadida ja analüüsi jaoks avada, kuid API abil saab andmete pärimise lisada otse automatiseeritud pipeline'i.
+## Failid
 
-### Milline pipeline'i etapp oli kõige keerulisem ühendada?
+```text
+week-8/
+└── individual/
+    ├── pipeline.py
+    └── README.md
+```
 
-Kõige rohkem tähelepanu nõudis erinevate moodulite ühendamine üheks terviklikuks protsessiks. Moodulite sisendid ja väljundid peavad omavahel sobima ning pipeline peab käivitama kõik etapid õiges järjekorras.
-
-### Kuidas veakäsitlus muudab koodi tootmisvalmimaks?
-
-Veakäsitlus võimaldab tuvastada, millises pipeline'i etapis probleem tekkis, ning väldib olukorda, kus protsess ebaõnnestub ilma arusaadava veateateta.
-
-### Mida tahaksin automatiseerida järgmises projektis?
-
-Järgmises projektis tahaksin automatiseerida regulaarse andmeanalüüsi nii, et andmed päringutest kuni valmis raporti või visualiseeringuni uueneksid võimalikult vähese käsitsi sekkumisega.
-
-## AI kasutamine
-
-Kasutasin AI-d pipeline'i loogika kontrollimiseks, vigade põhjuste leidmiseks ning dokumentatsiooni struktureerimise toetamiseks. AI aitas mõista, kuidas eraldi moodulid terviklikuks automatiseeritud töövooks ühendada.
-
-## Kokkuvõte
-
-Nädala 8 tulemusena õppisin, kuidas muuta mitmest eraldi etapist koosnev andmeanalüüs automatiseeritud ja korratavaks protsessiks.
-
-Minu individuaalne artefakt `pipeline.py` ühendab pipeline'i erinevad etapid ning võimaldab kogu protsessi käivitada ühe käsuga.
-
-Töö tulemusena sain praktilise kogemuse Python-moodulite integreerimisest, API-põhisest andmetöötlusest, veakäsitlusest ja analüüsiprotsessi automatiseerimisest.
+`pipeline.py` sisaldab automatiseeritud andmepipeline'i käivitamise loogikat ning `README.md` dokumenteerib individuaalse töö eesmärgi, töövoo ja õpitulemuse.
